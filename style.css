@@ -15,8 +15,11 @@ button{
     justify-content: center;
 }
 .display{
-    width: 360px;
-    text-align: center;
+    width: 350px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 5px solid black;
     border-radius: 20px;
 }
