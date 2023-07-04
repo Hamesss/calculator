@@ -13,21 +13,27 @@ function updateDisplay(e) {
     }
     //If user uses a math expression
     else if (!!this.innerHTML.match(/^[+\-*/]/)) {
+        if (displayText.innerHTML != "" && previousInput != "Operation"){
         firstValue = displayText.innerHTML;
         displayText.innerHTML = this.innerHTML;
         previousInput = "Operation";
         operation = this.innerHTML;
+        
+        }
     }
     //If user presses equal sign
     else if (this.innerHTML == "="){
         secondValue = displayText.innerHTML;
+        previousInput = "Operation";
         displayText.innerHTML = operate(operation, firstValue, secondValue);
+        firstValue = displayText.innerHTML;
     }
 
     //If user clicks a number
     else {
         if (previousInput == "Operation") {
-            displayText.innerHTML = this.innerHTML;
+            displayText.innerHTML = this.innerHTML; //second number
+                
         }
         else {
             displayText.innerHTML += this.innerHTML;

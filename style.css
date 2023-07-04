@@ -15,7 +15,7 @@ button{
     justify-content: center;
 }
 .display{
-    width: 350px;
+    width: 335px;
     height: 80px;
     display: flex;
     justify-content: flex-end;
