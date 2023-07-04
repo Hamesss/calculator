@@ -57,7 +57,7 @@ function operate(operation, a, b) {
 }
 
 function add(a, b) {
-    return a + b;
+    return parseInt(a) + parseInt(b);
 }
 
 function subtract(a, b) {
