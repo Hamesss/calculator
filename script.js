@@ -1,5 +1,5 @@
-let firstValue = 0;
-let secondValue = 0;
+let firstValue = undefined;
+let secondValue = undefined;
 let operation = "";
 let previousInput = "";
 const btns = document.querySelectorAll("button");
@@ -13,18 +13,25 @@ function updateDisplay(e) {
     }
     //If user uses a math expression
     else if (!!this.innerHTML.match(/^[+\-*/]/)) {
-        if (displayText.innerHTML != "" && previousInput != "Operation"){
-        firstValue = displayText.innerHTML;
-        displayText.innerHTML = this.innerHTML;
-        previousInput = "Operation";
-        operation = this.innerHTML;
         
-        }
+            if (previousInput == "secondNumber"){
+                displayText.innerHTML = operate(operation, firstValue, secondValue);
+                firstValue = operate(operation, firstValue, secondValue);
+                operation = this.innerHTML;
+            }
+            else if (previousInput == "firstNumber" || previousInput == "equal"){
+            displayText.innerHTML = this.innerHTML;
+            operation = this.innerHTML;
+            }
+            
+            previousInput = "Operation";
+            
+        
     }
     //If user presses equal sign
     else if (this.innerHTML == "="){
         secondValue = displayText.innerHTML;
-        previousInput = "Operation";
+        previousInput = "equal";
         displayText.innerHTML = operate(operation, firstValue, secondValue);
         firstValue = displayText.innerHTML;
     }
@@ -33,12 +40,15 @@ function updateDisplay(e) {
     else {
         if (previousInput == "Operation") {
             displayText.innerHTML = this.innerHTML; //second number
-                
+            secondValue = displayText.innerHTML;
+            previousInput = "secondNumber";
         }
         else {
             displayText.innerHTML += this.innerHTML;
+            firstValue = displayText.innerHTML;
+            previousInput = "firstNumber";
         }
-        previousInput = "Number";
+        
     }
 }
 
