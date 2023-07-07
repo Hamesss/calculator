@@ -17,6 +17,7 @@ button{
 .display{
     width: 335px;
     height: 80px;
+    font-family: "Segoe UI", "Arial", "Times New Roman";
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;

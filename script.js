@@ -1,5 +1,5 @@
 let firstValue = undefined;
-let secondValue = undefined;
+let secondValue = "";
 let operation = "";
 let previousInput = "";
 const btns = document.querySelectorAll("button");
@@ -25,8 +25,7 @@ function updateDisplay(e) {
             }
             
             previousInput = "Operation";
-            
-        
+            secondValue = "";
     }
     //If user presses equal sign
     else if (this.innerHTML == "="){
@@ -34,16 +33,22 @@ function updateDisplay(e) {
         previousInput = "equal";
         displayText.innerHTML = operate(operation, firstValue, secondValue);
         firstValue = displayText.innerHTML;
+        secondValue = "";
     }
 
     //If user clicks a number
     else {
         if (previousInput == "Operation") {
-            displayText.innerHTML = this.innerHTML; //second number
-            secondValue = displayText.innerHTML;
+            if(!isNaN(this.innerHTML) || this.innerHTML == "."){
+            displayText.innerHTMl = "";
+            secondValue += this.innerHTML; //second number
+            displayText.innerHTML = secondValue;
+            }
+            else{
             previousInput = "secondNumber";
+            }
         }
-        else {
+        else{ //issue is because this runs after the first number (idk how to fix)
             displayText.innerHTML += this.innerHTML;
             firstValue = displayText.innerHTML;
             previousInput = "firstNumber";
